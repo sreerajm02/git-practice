@@ -10,7 +10,13 @@ then
 fi
 
 VALIDATE(){
-echo "fist $1"
+if [ $? -ne 0 ]
+then
+ echo "Function is failed"
+ exit 1
+ else
+ echo "Funciton is Success"
+ fi
 }
 
 dnf list installed git
