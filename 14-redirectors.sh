@@ -28,6 +28,16 @@ then
  fi
 }
 
+USAGE(){
+  echo "Usge :: sudo sh filename pakg1 pckg2 etc..."    
+  exit 1
+}
+
+if [ $# -eq 0 ]
+then 
+  USAGE
+fi
+
 for package in $@
 do 
   dnf list installed $package &>>$LOG_FILE
