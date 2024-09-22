@@ -27,3 +27,17 @@ then
  echo -e "$2 Funciton is $G Success $N" &>>$LOG_FILE
  fi
 }
+
+for package in $@
+do 
+  dnf list installed $package &>>$LOG_FILE
+  if [ $? -ne 0 ]
+  then 
+    echo "$package is not installed..going to install" &>>$LOG_FILE
+    dnf install $package -y
+    VALIDATE $? "Installing $package"
+else
+   echo "$package already installed" &>>$LOG_FILE
+   fi
+done
+
