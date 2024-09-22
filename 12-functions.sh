@@ -12,38 +12,25 @@ fi
 VALIDATE(){
 if [ $1 -ne 0 ]
 then
- echo "Function is failed"
+ echo "$2 Function is failed"
  exit 1
  else
- echo "Funciton is Success"
+ echo "$2 Funciton is Success"
  fi
 }
 
 dnf list installed git
 
-VALIDATE $?
+VALIDATE $? "Listing Git"
 
-# if [ $? -ne 0 ]
-# then 
-#  echo "Git is not installed,going to installl ...."
-#  dnf install git -y
-#  else
-#   echo "Git is already installed"
-# fi
 
-# dnf list installed mysql
+dnf list installed mysql
 
-# if [ $? -ne 0 ]
-# then 
-#  echo "mysql is not installed,going to installl ...."
-#  dnf install mysql -y
-#   if [ $? -ne 0 ]
-#  then
-#  echo "mysql is istallatin unsuccesfulll" 
-#  exit 1
-#  else 
-#  echo "Mysql is installation success"
-#  fi
-#  else
-#   echo "mysql is already installed"
-# fi
+if [ $? -ne 0 ]
+then 
+ echo "mysql is not installed,going to installl ...."
+ dnf install mysql -y
+VALIDATE $? "Install MYSQL"  
+ else
+  echo "mysql is already installed"
+fi
