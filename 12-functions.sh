@@ -2,6 +2,9 @@
 
 
 USERID=$(id -u)
+R="\e[31m"
+G="\e[32m"
+N="\e[0m"
 
 if [ $USERID -ne 0 ]
 then
@@ -12,10 +15,10 @@ fi
 VALIDATE(){
 if [ $1 -ne 0 ]
 then
- echo "$2 Function is failed"
+ echo -e "$2 Function is $R failed $N"
  exit 1
  else
- echo "$2 Funciton is Success"
+ echo -e "$2 Funciton is $G Success $N"
  fi
 }
 
